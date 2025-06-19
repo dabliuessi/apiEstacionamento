@@ -57,8 +57,16 @@ export const listarRegistros = async (req, res) => {
   try {
     const registros = await RegistroAcesso.findAll({
       include: [
-        { model: Veiculo, attributes: ['placa', 'modelo'] },
-        { model: Estacionamento, attributes: ['localidade'] }
+        {
+          model: Veiculo,
+          as: 'veiculo', // <- isso aqui é essencial!
+          attributes: ['placa', 'modelo']
+        },
+        {
+          model: Estacionamento,
+          as: 'estacionamento', // <- isso também
+          attributes: ['localidade']
+        }
       ],
       order: [['data_hora_entrada', 'DESC']]
     });
@@ -68,3 +76,4 @@ export const listarRegistros = async (req, res) => {
     res.status(500).json({ error: 'Erro ao listar registros' });
   }
 };
+
