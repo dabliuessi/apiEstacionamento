@@ -4,7 +4,7 @@ import { criarVeiculo, listarVeiculos, deletarVeiculo } from '../controllers/vei
 const router = Router();
 
 router.post('/', auth, criarVeiculo);
-router.delete('/', auth, deletarVeiculo);
+router.delete('/:id', auth, deletarVeiculo);
 router.get('/', auth, listarVeiculos);
 
 export default router;
