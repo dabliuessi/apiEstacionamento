@@ -1,6 +1,6 @@
 import { Estacionamento } from '../models/index.js';
 
-// LISTAR todos os estacionamentos
+
 export const listarEstacionamentos = async (req, res) => {
   try {
     const dados = await Estacionamento.findAll();
@@ -10,7 +10,7 @@ export const listarEstacionamentos = async (req, res) => {
   }
 };
 
-// CRIAR novo estacionamento
+
 export const criarEstacionamento = async (req, res) => {
   const { localiddade, total_vagas } = req.body;
 

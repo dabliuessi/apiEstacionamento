@@ -40,7 +40,7 @@ export const registrarSaida = async (req, res) => {
     acesso.data_hora_saida = new Date();
     await acesso.save();
 
-    // Aqui assumimos apenas um estacionamento. Se houver vários, relacione o registro ao estacionamento
+    
     const estacionamento = await Estacionamento.findOne();
     if (estacionamento && estacionamento.vagas_ocupadas > 0) {
       estacionamento.vagas_ocupadas -= 1;
@@ -59,12 +59,12 @@ export const listarRegistros = async (req, res) => {
       include: [
         {
           model: Veiculo,
-          as: 'veiculo', // <- isso aqui é essencial!
+          as: 'veiculo', 
           attributes: ['placa', 'modelo']
         },
         {
           model: Estacionamento,
-          as: 'estacionamento', // <- isso também
+          as: 'estacionamento', 
           attributes: ['localidade']
         }
       ],

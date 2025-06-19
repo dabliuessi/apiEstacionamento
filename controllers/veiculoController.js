@@ -1,7 +1,7 @@
 import { Veiculo } from '../models/index.js';
 
 export const criarVeiculo = async (req, res) => {
-  const { modelo, placa, cor, imagem } = req.body; // <-- adiciona imagem aqui
+  const { modelo, placa, cor, imagem } = req.body;
   try {
     const veiculo = await Veiculo.create({
       modelo,
@@ -22,7 +22,7 @@ export const listarVeiculos = async (req, res) => {
   res.json(veiculos);
 };
 export const deletarVeiculo = async (req, res) => {
-  const { id } = req.params; // <- CORRIGIDO
+  const { id } = req.params;
   try {
     const veiculo = await Veiculo.findByPk(id);
     if (!veiculo || veiculo.id_usuario !== req.user.id) {
@@ -31,7 +31,7 @@ export const deletarVeiculo = async (req, res) => {
     await veiculo.destroy();
     res.json({ message: 'Veículo deletado com sucesso' });
   } catch (err) {
-    console.error(err); // Adicione isso para ver detalhes no terminal
+    console.error(err); 
     res.status(500).json({ error: 'Erro ao deletar veículo' });
   }
 };

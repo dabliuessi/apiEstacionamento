@@ -8,7 +8,7 @@ import Estacionamento from './models/Estacionamento.js';
   try {
     await sequelize.sync();
 
-    // Verifica se o estacionamento já existe
+    
     const existente = await Estacionamento.findOne({
       where: { localidade: 'Estacionamento Central' }
     });
