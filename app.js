@@ -19,8 +19,7 @@ app.use('/veiculos', veiculoRoutes);
 app.use('/estacionamentos', estacionamentoRoutes);
 app.use('/acessos', registroAcessoRoutes);
 
-sequelize.sync.then(() => console.log('Banco recriado com sucesso'));
-
+sequelize.sync().then(() => console.log('Banco sincronizado'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
