@@ -20,9 +20,21 @@ export const login = async (req, res) => {
     if (!user || !(await bcrypt.compare(senha, user.senha)))
       return res.status(401).json({ error: 'Credenciais inválidas' });
 
-    const token = jwt.sign({ id: user.id, tipo: user.tipo }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token });
+    const token = jwt.sign({ id: user.id, tipo: user.tipo }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    });
+
+    // Retorna o token e os dados básicos do usuário
+    res.json({
+      token,
+      usuario: {
+        nome: user.nome,
+        email: user.email,
+        tipo: user.tipo,
+      },
+    });
   } catch (err) {
     res.status(500).json({ error: 'Erro no login' });
   }
 };
+
