@@ -15,7 +15,7 @@ export const listarVeiculos = async (req, res) => {
   res.json(veiculos);
 };
 export const deletarVeiculo = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params; // <- CORRIGIDO
   try {
     const veiculo = await Veiculo.findByPk(id);
     if (!veiculo || veiculo.id_usuario !== req.user.id) {
@@ -24,6 +24,8 @@ export const deletarVeiculo = async (req, res) => {
     await veiculo.destroy();
     res.json({ message: 'Veículo deletado com sucesso' });
   } catch (err) {
+    console.error(err); // Adicione isso para ver detalhes no terminal
     res.status(500).json({ error: 'Erro ao deletar veículo' });
   }
-};  
+};
+ 
