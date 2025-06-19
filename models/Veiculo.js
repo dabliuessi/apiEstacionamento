@@ -6,7 +6,9 @@ const Veiculo = sequelize.define('Veiculo', {
   modelo: DataTypes.STRING,
   placa: DataTypes.STRING,
   cor: DataTypes.STRING,
+  imagem: DataTypes.STRING, // <-- novo campo
 });
+
 
 Veiculo.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 
