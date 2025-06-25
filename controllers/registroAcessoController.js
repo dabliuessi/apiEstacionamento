@@ -73,7 +73,7 @@ export const listarRegistros = async (req, res) => {
           model: Veiculo,
           as: 'veiculo',
           attributes: ['placa', 'modelo', 'id_usuario'],
-          where: { id_usuario: req.user.id }  // filtra veículos do usuário logado
+          where: { id_usuario: req.user.id }
         },
         {
           model: Estacionamento,
