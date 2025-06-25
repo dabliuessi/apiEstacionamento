@@ -71,12 +71,13 @@ export const listarRegistros = async (req, res) => {
       include: [
         {
           model: Veiculo,
-          as: 'veiculo', 
-          attributes: ['placa', 'modelo']
+          as: 'veiculo',
+          attributes: ['placa', 'modelo', 'id_usuario'],
+          where: { id_usuario: req.user.id }  // filtra veículos do usuário logado
         },
         {
           model: Estacionamento,
-          as: 'estacionamento', 
+          as: 'estacionamento',
           attributes: ['localidade']
         }
       ],
@@ -88,5 +89,6 @@ export const listarRegistros = async (req, res) => {
     res.status(500).json({ error: 'Erro ao listar registros' });
   }
 };
+
 
 
